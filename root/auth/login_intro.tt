@@ -1,0 +1,12 @@
+<div class="pithy">
+<h2>About Spoilerific and Twitter</h2>
+
+<p>When you log in, Twitter will ask if you'd like to grant Spoilerific permission to read and update your Twitter status.</p>
+
+<p>Spoilerific needs this permission so that it can post scrambled-up versions of your spoiler-filled messages to Twitter. You will <strong>always</strong> be able to see and approve of exactly what Spoilerific will post before it does so.</p>
+
+<p>Other than making these posts, Spoilerific does nothing else with your Twitter identity. For more information about what we do and don't do, have a look at our <a href="[% c.uri_for_action('/privacy') %]">our privacy policy</a>.</p>
+
+<p class="dialog"><a href="[% c.uri_for_action('/auth/login', { intro_read => 1, original_request_path => c.user_session.original_request_path } ) %]">Got it! Log me in!</a></p>
+
+</div>

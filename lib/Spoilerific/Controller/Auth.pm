@@ -24,11 +24,32 @@ Catalyst Controller.
 sub login : Local {
     my ($self, $c) = @_;
 
+    if ( $c->req->parameters->{ intro_read } ) {
+        $c->user_session->{ user_has_read_login_intro } = 1;
+    }
+
+
     $c->user_session->{ original_request_path }
         = $c->req->parameters->{ original_request_path };
 
+    unless ( $c->user_session->{ user_has_read_login_intro } ) {
+        $c->res->redirect( $c->uri_for_action(
+            '/auth/login_intro',
+            { original_request_path => $c->user_session->{ original_request_path } }
+        ) );
+        return;
+    }
+
     my $realm = $c->get_auth_realm('twitter');
     $c->res->redirect( $realm->credential->authenticate_twitter_url($c) );
+}
+
+sub login_intro : Local {
+    my ( $self, $c ) = @_;
+
+    $c->user_session->{ original_request_path }
+        = $c->req->parameters->{ original_request_path };
+
 }
 
 sub logout : Local {

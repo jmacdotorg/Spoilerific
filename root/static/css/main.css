@@ -77,6 +77,10 @@ color: black;
 font-size: x-large;
 }
 
+.pithy .dialog {
+font-size: xx-large;
+}
+
 #links {
 border-top: 1px solid gray;
 }
