@@ -1,0 +1,7 @@
+<div id="login_panel">
+[% IF c.user %]
+<p>Hi, [% c.user.twitter_user %]!</p>
+[% ELSE %]
+<p><a href="[% c.uri_for_action( '/auth/login', { original_request_path => '/' _ c.req.path } ) %]">Log in (via Twitter)</a></p>
+[% END %]
+</div> <!-- .login_panel -->

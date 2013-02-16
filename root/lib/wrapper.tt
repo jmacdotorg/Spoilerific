@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[% title || 'Spoilerific' %]</title>
+<link rel="StyleSheet" href="[% c.uri_for('/static/css/main.css') %]" type="text/css" media="all" />
+<script src="[% c.uri_for( '/static/js/jquery-1.9.0.min.js' ) %]"></script>
+</head>
+
+<body>
+<div id="sidebar">
+<div id="header">
+<h1><a href="[% c.uri_for('/') %]">Spoilerific!</a></h1>
+</div> <!-- #header -->
+[% INCLUDE lib/login_panel.tt %]
+[% IF c.user %]
+<p>
+<a href="[% c.uri_for_action( '/thread/create' ) %]">Start a new discussion</a>
+</p>
+<p><a href="[% c.uri_for_action( '/auth/logout', { original_request_path => '/' _ c.req.path } ) %]">Log out</a></p>
+[% END %]
+<div id="links">
+<p><a href="[% c.uri_for_action( '/about' ) %]">About</a></p>
+<p><a href="[% c.uri_for_action( '/privacy' ) %]">Privacy</a></p>
+<p><a href="[% c.uri_for_action( '/contact' ) %]">Contact / Bug reports</a></p>
+</div> <!-- #links -->
+</div> <!-- #sidebar -->
+<div id="content">
+[% content %]
+</div>
+</body>
+</html>

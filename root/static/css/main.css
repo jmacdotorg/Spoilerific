@@ -1,0 +1,82 @@
+body {
+width: 90%;
+margin: auto;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.success {
+color: green;
+}
+
+.failure {
+color: red;
+}
+
+.post_meta .poster {
+font-weight: bold;
+}
+
+.post_meta .time {
+font-style: italic;
+}
+
+.post .controls {
+float: right;
+}
+
+.post .text {
+margin-left: 5%;
+margin-right: 5%;
+font-size: x-large;
+}
+
+.post {
+border-top: 1px solid gray;
+padding-top: 5px;
+}
+
+#body_plaintext {
+width: 100%;
+}
+
+#sidebar {
+float: left;
+width: 20%;
+font-size: large;
+}
+
+#content {
+margin-left: 25%;
+padding-left: 5%;
+border-left: 1px solid gray;
+padding-top: 1px;
+}
+
+#header {
+font-family: Impact, Charcoal, sans-serif;
+}
+
+a:link {
+text-decoration: none;
+}
+
+#spoil_me_button {
+font-size: xx-large;
+width: 50%;
+margin: auto;
+text-align: center;
+border: 2px solid red;
+margin-bottom: 20px;
+}
+
+#header a:link, #header a:visited {
+color: black;
+}
+
+.pithy {
+font-size: x-large;
+}
+
+#links {
+border-top: 1px solid gray;
+}

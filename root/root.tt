@@ -1,0 +1,17 @@
+<div class="pithy">
+
+<h2>Jrypbzr gb Fcbvyrevsvp!<br /><em>(Welcome to Spoilerific!)</em></h2>
+<p>
+<strong>Spoilerific</strong> helps you discuss your favorite movies, games, books, and other stuff on Twitter without spoiling your friends.</p>
+
+<p>Folks can see what thing you're talking about, note how much you have to say about it, and pick up on other cues. But they can't read your exact words until they agree to see spoilers about whatever's got you excited.</p>
+
+<p><a href="https://twitter.com/search?q=%23spoilerific">Browse <code>#spoilerific</code> on Twitter</a> to see some live examples!</p>
+
+[% IF c.user %]
+<p>Welcome back, [% c.user.twitter_user %]! Would you like to <a href="[% c.uri_for_action( '/thread/create' ) %]">start a new Spoilerific conversation</a>?</p>
+[% ELSE %]
+<p>To start a Spoilerific conversation of your own, <a href="[% c.uri_for_action( '/auth/login' ) %]">log in via Twitter</a>.</p>
+[% END %]
+
+</div> <!-- #front_page -->

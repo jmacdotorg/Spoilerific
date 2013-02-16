@@ -1,0 +1,54 @@
+<h1>A Spoilerific discussion about <em>[% thread.subject %]</em></h1>
+[% UNLESS current_user_has_cleared_this_thread %]
+<p>To unscramble this discussion, click the SPOIL ME! button — but only if you really want to see spoilers!</p>
+<a href="[% c.uri_for_action( '/thread/spoil', [thread.id] ) %]"><p id="spoil_me_button">SPOIL ME!</p></a>
+[% END %]
+
+[% IF c.flash.post_succeeded %]
+<div class="success">
+<p>Post to twitter successful!</p>
+</div>
+[% ELSIF c.flash.post_failed %]
+<div class="failure">
+<p>Oh dear, failed to post to Twitter! Twitter had this to say: <strong>[% c.flash.post_error_message %]</strong> Sorry about that.</p>
+</div>
+[% END %]
+
+[% FOREACH post IN thread.posts %]
+    <div class="post" id="[% post.id %]">
+    <div class="controls">
+    <a href="[% c.uri_for_action( '/thread/detail', [thread.id] ) _ '#' _ post.id %]">Permalink</a>
+    <a href="[% post.twitter_url %]">Twitter link</a>
+    [% IF c.user && current_user_has_cleared_this_thread %]
+    <a href="javascript:reply_to([% post.tweet_id %], '[% post.poster.twitter_user %]')">Reply</a>
+    [% END %]
+    </div>
+            <div class="post_meta"><p><span class="poster"><a href="http://twitter.com/[% post.poster.twitter_user %]">@[% post.poster.twitter_user %]</a></span> <span class="time"> [% post.timestamp.hour_12 %]:[% post.timestamp.minute FILTER format('%02d') %] [% post.timestamp.am_or_pm %], [% post.timestamp.month_abbr %] [% post.timestamp.day %], [% post.timestamp.year %]
+    <div class="text">
+    <p>
+    [% IF current_user_has_cleared_this_thread %]
+        [% post.body_plaintext %]
+    [% ELSE %]
+        [% post.body_ciphertext %]
+    [% END %]
+    </p>
+    </div> <!-- .text -->
+    </div> <!-- .post -->
+[% END %]
+
+[% IF current_user_has_cleared_this_thread %]
+    [% IF c.user %]
+        <div id="post_form">
+        [% IF thread.posts.size > 0 %]
+            <h2>Add to this thread</h2>
+        [% ELSE %]
+            <h2>Write your post</h2>
+        [% END %]
+        [% INCLUDE thread/post_form.tt %]
+        </div>
+    [% ELSE %]
+    <p>To add your own <em>Spoilerfic</em> post to this thread, <a href="[% c.uri_for_action( '/auth/login', { original_request_path => '/' _ c.req.path } ) %]">sign in via Twitter</a>.</p>
+    [% END %]
+[% END %]
+
+[%# INCLUDE thread/debug.tt %]

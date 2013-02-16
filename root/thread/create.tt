@@ -1,0 +1,15 @@
+<h1>Starting a new Spoilerific topic</h1>
+
+<p>Excellent! Before you make your first post, though, let me know what it'll be about. That way, people will know exactly what they're getting when they choose to read your spoiler.</p>
+
+<form>
+<h2>What topic would you like to discuss?</h2>
+<p>You can be as brief or as wordy as you'd like. Examples: <em>Harry Potter</em>, <em>Buffy the Vampire Slayer Season 2</em>, <em>XCOM: Enemy Unknown</em>...</p>
+[% form.field( 'subject' ).render %]
+
+<h2>What's a good hashtag to use for this topic?</h2>
+<p>Keep it short! Examples: #harrypotter, #BtVS, #XCOM</p>
+[% form.field( 'hashtag' ).render %]
+
+[% form.field( 'continue' ).render %]
+</form>

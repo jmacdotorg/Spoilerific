@@ -1,0 +1,79 @@
+
+<form action="[% c.uri_for_action( '/thread/post', [ thread.id ] ) %]">
+<p>Click <em>Preview</em> to see what your post will look like on Twitter, with scrambled text, a link to this page, and other Spoilerific stuff added.</p>
+<p>
+Characters left: <span id="characters-left">0</span>
+</p>
+<textarea id="body_plaintext" name="body_plaintext"></textarea><button type="button" id="preview_button">Preview</button>
+
+<div id="preview_div">
+</div>
+<input type="submit" id="post_button" style="display: none;" value="Post this to Twitter" />
+<input type="hidden" id="in_reply_to" name="in_reply_to" value="" />
+</form>
+
+<script>
+var max_post_length = 140;
+var url_length = [% url_length %];
+var space_length = 1;
+var hashtag_length = [% hashtag_length || 0 %];
+var preview_url = "[% c.uri_for_action( '/thread/preview', [ thread.id ] ) %]";
+
+update_characters_left_display();
+
+// Bind a change-anything listener to the textarea.
+$("#body_plaintext").bind("propertychange keyup input cut paste", function( event ) {
+    update_characters_left_display();    
+} );
+
+function update_characters_left_display() {
+    var current_text = $("#body_plaintext").val();
+    
+    // Detect, remove and count all URLs.
+    var url_pattern = /(?:(http|ftp|https):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/g;
+
+    var matches = current_text.match( url_pattern );
+    
+    if ( matches == null ) {
+        url_count = 0;
+    }
+    else {
+        url_count = matches.length;
+    }
+    
+    // Add the remainder's length to URL lengths + required hashtag 
+    // + required URL
+    var length = current_text.length 
+                 + ( url_count * url_length)
+                 + space_length
+                 + hashtag_length
+                 + space_length
+                 + url_length
+                 ;
+    
+    var characters_left = max_post_length - length;
+
+    // Write this number into the display
+    $("#characters-left").html( characters_left );
+}
+
+function reply_to( tweet_id, poster ) {
+    $( '#in_reply_to' ).val( tweet_id );
+    window.location.hash = 'post_form';
+    $( '#body_plaintext' ).focus();
+    $( '#body_plaintext' ).val( '@' + poster + ' '
+                                + $( '#body_plaintext' ).val() ); 
+}
+
+$( '#preview_button').click( function() {
+    $( '#preview_div' ).html( '<p>Loading...</p>' )
+                       .load( 
+                            preview_url,
+                            {
+                                'body_plaintext': $("#body_plaintext").val()
+                            }
+                       );
+    $( '#post_button' ).css( 'display', 'block' );   
+} );
+
+</script>
