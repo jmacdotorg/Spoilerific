@@ -47,8 +47,20 @@ sub login : Local {
 sub login_intro : Local {
     my ( $self, $c ) = @_;
 
-    $c->user_session->{ original_request_path }
-        = $c->req->parameters->{ original_request_path };
+    if ( $c->req->parameters->{ original_request_path } ) {
+        $c->user_session->{ original_request_path }
+            = $c->req->parameters->{ original_request_path };
+    }
+
+    $c->stash->{ original_request_path } = $c->req->parameters->{ original_request_path };
+
+    # If the user's already read the login spiel, move them along.
+    if ( $c->user_session->{ user_has_read_login_intro } ) {
+        $c->res->redirect( $c->uri_for_action(
+            '/auth/login',
+            { original_request_path => $c->user_session->{ original_request_path } },
+        ) );
+    }
 
 }
 
