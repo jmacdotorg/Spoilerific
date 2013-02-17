@@ -1,9 +1,11 @@
 <div class="pithy">
 <h2>About Spoilerific and Twitter</h2>
 
-<p>When you log in, Twitter will ask if you'd like to grant Spoilerific permission to read and update your Twitter status.</p>
+<p><strong>Please read this before your first login!</strong></p>
 
-<p>Spoilerific needs this permission so that it can post scrambled-up versions of your spoiler-filled messages to Twitter. You will <strong>always</strong> be able to see and approve of exactly what Spoilerific will post before it does so.</p>
+<p>When you click the "log me in" link below, Twitter will ask if you'd like to grant Spoilerific permission to read and update your Twitter status.</p>
+
+<p>Spoilerific needs this permission so that it can post scrambled-up versions of your spoiler-filled messages to Twitter (as described on <a href="[% c.uri_for_action('/about') %]">our About page</a>). You will <strong>always</strong> be able to see and approve of exactly what Spoilerific will post before it does so.</p>
 
 <p>Other than making these posts, Spoilerific does nothing else with your Twitter identity. For more information about what we do and don't do, have a look at our <a href="[% c.uri_for_action('/privacy') %]">our privacy policy</a>.</p>
 

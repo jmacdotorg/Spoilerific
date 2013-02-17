@@ -1,14 +1,27 @@
 <div class="pithy">
-<h2>About this thing</h2>
+<h2>What does Spoilerific do?</h2>
 
-<div id="about">
+<p>Let's say that you just watched a movie that your friends have been raving about. You were stunned by a certain plot twist, and wish to bring it up on Twitter for further discussion. Your tweet might look like this:</p>
+
+<blockquote class="example">Holy crap, Vader is Luke's father?! But didn't Obi-Wan say that Vader *killed* Luke's dad? #starwars #confused</blockquote>
+
+<p>Let's further say that this notional movie is still pretty new, making you hesitant to blurt out plot details in public like this. You hate it when you accidentally read spoilers that other people carelessly leave around the internet, and you'd rather avoid making that problem worse.</p>
+
+<p>This is where Spoilerific comes in. After you log into this site with your Twitter credentials, you can use Spoilerific to post this same tweet — but now it will look like this:</p>
+
+<blockquote class="example">Ubyl penc, Inqre vf Yhxr'f sngure?! Ohg qvqa'g Bov-Jna fnl gung Inqre *xvyyrq* Yhxr'f qnq? #starwars #confused http://t.co/...</blockquote>
+
+<p>The text of your tweet has been rendered into apparent gobbledygook, but your punctuation remains, as do your hashags. Your Twitter followers thus see that you're surprised and confused about something regarding #starwars (whatever that is). But they can't see exactly what you have to say — at least not without taking an extra step.</p>
+
+<p>That URL at the end is a link back to a page on this site, which Spoilerific itself added to your tweet before sending it to Twitter. Someone visiting this page for the first time will see a message making it clear that you have shared spoiler-filled thoughts about this "Star Wars" thing you just saw, and gives them the choice to read your spoilers, or to back away unspoiled.</p>
+
+<p>Choosing the former option will reveal your message as you originally wrote it. It will also give the visitor the chance to reply with their own spoilery thoughts, which Spoilerific will in turn encode and add a link to, just as with your first tweet. This reply, and all further posts in the thread, will all appear as part of this one discussion page on Spoilerific.</p>
+
+<h2>Who made Spoilerific?</h2>
+
 <p>Spoilerific was conceived and implemented by me, <a href="http://jmac.org">Jason McIntosh</a> (<a href="http://twitter.com/JmacDotOrg">@JmacDotOrg</a>). I currently maintain and host it as well.</p>
 
-<p>It gives Twitter users an easy way to encode spoiler-filled thoughts via the trivial text cipher known as <a href="http://en.wikipedia.org/wiki/Rot13">rot13</a>, and — more importantly — lets their friends and followers decrypt these posts with a couple of clicks.</p>
-
-<p>(The second click happens when a visitor confirms that, yes, they know which piece of media these messages spoil, and they really do want to read them. We take spoiler-aversion seriously around here!)</p>
-
-<h3>Why?</h3>
+<h2>Why?</h2>
 
 <p>I wrote a blog post in 2012 called <a href="http://gameshelf.jmac.org/2012/04/lets-use-rot13-for-game-spoilers/"><cite>Let's use rot13 for game spoilers</cite></a> that digs into the same philosophies and desires that, a year later, spurred the creation of Spoilerific.</p>
 
@@ -24,7 +37,7 @@ My proposed solution in that blog post involved simply appending a link to the e
 Spoilerific experiments with providing a compromise, an external service that lets Twitter continue to store the conversations (and user identities), but makes rot13-encoded posts very easy to create and even easier to read.
 </p>
 
-<h3>Why Twitter?</h3>
+<h2>Why Twitter?</h2>
 
 <p>
 It's the one social media chatter-platform I use the most, by far. I have accounts on others but I don't use them nearly as much. And this is a personal project to scratch a personal itch (albeit one that I wager others have as well), so it's Twitter-only for now.
