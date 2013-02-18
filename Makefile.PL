@@ -19,7 +19,10 @@ requires 'Config::General'; # This should reflect the config file format you've 
                  # See Catalyst::Plugin::ConfigLoader for supported formats
 test_requires 'Test::More' => '0.88';
 
-requires 'Catalyst::Plugin::Authentication::Twitter' => '0.03001';
+requires 'Catalyst::Authentication::Credential::Twitter' => '0.03001';
+
+requires 'FindBin::libs';
+requires 'Catalyst::Plugin::Session::PerUser' => '0.05';
 
 catalyst;
 
