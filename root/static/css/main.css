@@ -86,6 +86,10 @@ font-family: Gerogia, serif;
 color: gray;
 }
 
+.error_message {
+color: red;
+}
+
 #links {
 border-top: 1px solid gray;
 }
