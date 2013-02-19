@@ -127,6 +127,12 @@ sub post :Chained('get_thread') :PathPart('post') :Args(0) {
         $post->update;
     }
     else {
+        $c->flash->{ body_plaintext } = $post->body_plaintext;
+        $c->log->warn("Failed to post this to twitter:\n"
+                      . $post->full_ciphertext . "\n"
+                      . "Reason was:\n"
+                      . $@->twitter_error->{ error }
+                     );
         $post->delete;
         $c->flash->{ post_failed } = 1;
         $c->flash->{ post_error_message } = $@->twitter_error->{ error };
