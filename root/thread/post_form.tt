@@ -4,7 +4,7 @@
 <p>
 Characters left: <span id="characters-left">0</span>
 </p>
-<textarea id="body_plaintext" name="body_plaintext"></textarea><button type="button" id="preview_button">Preview</button>
+<textarea id="body_plaintext" name="body_plaintext">[% c.flash.body_plaintext %]</textarea><button type="button" id="preview_button">Preview</button>
 
 <div id="preview_div">
 </div>
