@@ -6,7 +6,7 @@
 
 <p>Folks can see what thing you're talking about, note how much you have to say about it, and pick up on other cues. But they can't read your exact words until they agree to see spoilers about whatever's got you excited.</p>
 
-<p><a href="https://twitter.com/search?q=%23spoilerific">Browse <code>#spoilerific</code> on Twitter</a> to see some live examples!</p>
+<p><a href="https://twitter.com/search?q=%23spoilerific">Browse <code>#spoilerific</code> on Twitter</a> to see some live examples, or <a href="[% c.uri_for_action( '/about' ) %]">read our About page</a> to learn more about what it does and how it works.</p>
 
 [% IF c.user %]
 <p>Welcome back, [% c.user.twitter_user %]! Would you like to <a href="[% c.uri_for_action( '/thread/create' ) %]">start a new Spoilerific conversation</a>?</p>
