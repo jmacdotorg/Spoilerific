@@ -33,8 +33,8 @@ extends 'Catalyst';
 our $VERSION = '0.01';
 
 use Readonly;
-Readonly my $TWITTER_KEY => 'vhPfRMAmWicZaxdEfToZLQ';
-Readonly my $TWITTER_SECRET => 'ev2KOPola3k8bqOfoR0UOKG8arotSPzWquSofxO9A';
+Readonly my $TWITTER_KEY => 'KzOCBRUhDZyolbHQqKuDQ';
+Readonly my $TWITTER_SECRET => 'j2dJCdv7bt6A5SOpXOz2b7OqVXXlVA46LbNnVCsQyic';
 
 # Configure the application.
 #
