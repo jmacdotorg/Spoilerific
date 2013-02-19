@@ -23,7 +23,7 @@
     <a href="javascript:reply_to([% post.tweet_id %], '[% post.poster.twitter_user %]')">Reply</a>
     [% END %]
     </div>
-            <div class="post_meta"><p><span class="poster"><a href="http://twitter.com/[% post.poster.twitter_user %]">@[% post.poster.twitter_user %]</a></span> <span class="time"> [% post.timestamp.hour_12 %]:[% post.timestamp.minute FILTER format('%02d') %] [% post.timestamp.am_or_pm %], [% post.timestamp.month_abbr %] [% post.timestamp.day %], [% post.timestamp.year %]
+            <div class="post_meta"><p><span class="poster"><a href="http://twitter.com/[% post.poster.twitter_user %]">@[% post.poster.twitter_user %]</a></span> <span class="time"> [% post.timestamp.hour_12 %]:[% post.timestamp.minute FILTER format('%02d') %] [% post.timestamp.am_or_pm %] UTC, [% post.timestamp.month_abbr %] [% post.timestamp.day %], [% post.timestamp.year %]
     <div class="text">
     <p>
     [% IF current_user_has_cleared_this_thread %]
