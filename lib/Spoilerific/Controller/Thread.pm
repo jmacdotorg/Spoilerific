@@ -93,6 +93,8 @@ sub preview :Chained('get_thread') :PathPart('preview') :Args(0) {
         }
     );
 
+    $self->_set_uri_base( $c );
+
     $post->body_plaintext( $c->req->parameters->{ body_plaintext } );
     $c->stash->{ post } = $post;
 
@@ -110,10 +112,7 @@ sub post :Chained('get_thread') :PathPart('post') :Args(0) {
         }
     );
 
-    # Inform the Post class of the the current URI base (minus trailing slash).
-    my $base = $c->req->base;
-    $base =~ s{/$}{};
-    Spoilerific::Schema::Result::Post->url_base( $base );
+    $self->_set_uri_base( $c );
 
     $post->body_plaintext( $c->req->parameters->{ body_plaintext } );
 
@@ -181,6 +180,15 @@ sub _current_user_created_this_thread {
     else {
         return 0;
     }
+}
+
+sub _set_uri_base {
+    my ( $self, $c ) = @_;
+
+    # Inform the Post class of the the current URI base (minus trailing slash).
+    my $base = $c->req->base;
+    $base =~ s{/$}{};
+    Spoilerific::Schema::Result::Post->url_base( $base );
 }
 
 =head1 AUTHOR
