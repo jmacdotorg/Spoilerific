@@ -68,7 +68,13 @@ Attempt to render a view, if needed.
 
 =cut
 
-sub end : ActionClass('RenderView') {}
+sub end : ActionClass('RenderView') {
+    my ( $self, $c ) = @_;
+
+    # Work around apparent funny business WRT
+    # Catalyst::Authentication::Credential::Twitter.
+    $c->get_auth_realm('twitter')->credential->twitter_user( undef );
+}
 
 =head1 AUTHOR
 

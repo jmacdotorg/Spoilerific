@@ -70,7 +70,6 @@ __PACKAGE__->config(
                 store => {
                 	class => 'DBIx::Class',
                 	user_model => 'SpoilerDB::User',
-                	id_field => 'id',
             	},
             },
 
