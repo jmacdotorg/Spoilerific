@@ -71,6 +71,8 @@ sub logout : Local {
 
     $c->logout;
 
+    $c->user_session->{ user_has_read_login_intro } = 1;
+
     $c->res->redirect(
         $c->uri_for( $redirect_path || '/' )
     );
