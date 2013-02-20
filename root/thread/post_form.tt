@@ -14,7 +14,7 @@ Characters left: <span id="characters-left">0</span>
 <div id="preview_div">
 Preview your tweet before posting it!
 </div>
-<input type="submit" id="post_button" disabled="1" value="Post this to Twitter" />
+<input type="submit" id="post_button" value="Post this to Twitter" />
 <input type="hidden" id="in_reply_to" name="in_reply_to" value="" />
 </form>
 
@@ -31,6 +31,9 @@ update_characters_left_display();
 $("#body_plaintext").bind("propertychange keyup input cut paste", function( event ) {
     update_characters_left_display();    
 } );
+
+// Disable the post button.
+$( '#post_button' ).attr( 'disabled', 'disabled' );
 
 function update_characters_left_display() {
     var current_text = $("#body_plaintext").val();
