@@ -1,14 +1,20 @@
 
 <form action="[% c.uri_for_action( '/thread/post', [ thread.id ] ) %]">
-<p>Click <em>Preview</em> to see what your post will look like on Twitter, with scrambled text, a link to this page, and other Spoilerific stuff added.</p>
+<ul>
+<li>Your post will have a shortened link back to this page automatically added.</li>
+<li>We leave any <code>@usernames</code> and <code>#hashtags</code> in your tweet unscrambled.</li>
+<li>If there's room left over, we'll add a few other appropriate hashtags and labels.</li>
+<li>Click the <em>Preview</em> button to see what the post will look like on Twitter.</li>
+</ul>
 <p>
 Characters left: <span id="characters-left">0</span>
 </p>
 <textarea id="body_plaintext" name="body_plaintext">[% c.flash.body_plaintext %]</textarea><button type="button" id="preview_button">Preview</button>
 
 <div id="preview_div">
+Preview your tweet before posting it!
 </div>
-<input type="submit" id="post_button" style="display: none;" value="Post this to Twitter" />
+<input type="submit" id="post_button" disabled="1" value="Post this to Twitter" />
 <input type="hidden" id="in_reply_to" name="in_reply_to" value="" />
 </form>
 
@@ -73,7 +79,7 @@ $( '#preview_button').click( function() {
                                 'body_plaintext': $("#body_plaintext").val()
                             }
                        );
-    $( '#post_button' ).css( 'display', 'block' );   
+    $( '#post_button' ).removeAttr( 'disabled' );   
 } );
 
 </script>
