@@ -51,8 +51,8 @@ function update_characters_left_display() {
     // + required URL
     var length = current_text.length 
                  + ( url_count * url_length)
-                 + space_length
-                 + hashtag_length
+//                 + space_length
+//                 + hashtag_length
                  + space_length
                  + url_length
                  ;

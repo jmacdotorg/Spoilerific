@@ -286,20 +286,23 @@ sub _fill {
     my $hashtag_length = length($self->thread->hashtag) + 1;
     my $spoilertag_length = length($SPOILERTAG) + 1;
 
-    if ( $self->_is_first_post ) {
-        $bodytext = $self->thread->subject . ": $bodytext";
-    }
+#    if ( $self->_is_first_post ) {
+#        $bodytext = $self->thread->subject . ": $bodytext";
+#    }
 
-    if ( length_plus_url($bodytext) + $spoilertag_length <= $POST_MAXLENGTH ) {
-        $bodytext .= " $SPOILERTAG";
-    }
-
+    # Add optional bits, one at a time, in order of precedence.
+    # First, the subject hashtag.
     if ( length_plus_url($bodytext) + $hashtag_length <= $POST_MAXLENGTH ) {
         # Don't redundantly add the thread hashtag if the poster's manually added it.
         my $thread_hashtag = $self->thread->hashtag;
         unless ( $bodytext =~ /$thread_hashtag/ ) {
             $bodytext .= q{ } . $thread_hashtag;
         }
+    }
+
+    # Next, the app's 'branding' tag, har har.
+    if ( length_plus_url($bodytext) + $spoilertag_length <= $POST_MAXLENGTH ) {
+        $bodytext .= " $SPOILERTAG";
     }
 
     # All posts must end with space + linkback.
