@@ -40,7 +40,7 @@
     [% IF c.user %]
         <div id="post_form">
         [% IF thread.posts.size > 0 %]
-            <h2>Add to this thread</h2>
+            <h2>Add to this discussion</h2>
         [% ELSE %]
             <h2>Write your post</h2>
         [% END %]
