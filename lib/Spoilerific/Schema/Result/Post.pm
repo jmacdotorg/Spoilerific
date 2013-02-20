@@ -197,6 +197,7 @@ __PACKAGE__->belongs_to(
 use Readonly;
 Readonly my $POST_MAXLENGTH => 140;
 Readonly my $SPOILERTAG => '#spoilerific';
+Readonly my $URL_PATTERN => qr/(?:(http|ftp|https):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/;
 
 use MooseX::ClassAttribute;
 use Net::Twitter;
@@ -263,7 +264,7 @@ around body_plaintext => sub {
             my $pre_space = $1;
             my $word = $2;
             my $post_space = $3;
-            unless ( ($word =~ /^#/) or ($word =~ /^@/) ) {
+            unless ( ($word =~ /^#/) or ($word =~ /^@/) or ($word =~ $URL_PATTERN) ) {
                 $word =~ tr/n-za-mN-ZA-M/a-zA-Z/;
             }
             $body_ciphertext .= "$pre_space$word$post_space";

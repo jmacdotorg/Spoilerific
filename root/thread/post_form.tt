@@ -2,7 +2,7 @@
 <form action="[% c.uri_for_action( '/thread/post', [ thread.id ] ) %]">
 <ul>
 <li>Your post will have a shortened link back to this page automatically added.</li>
-<li>We leave any <code>@usernames</code> and <code>#hashtags</code> in your tweet unscrambled.</li>
+<li>We leave any <code>@usernames</code>, <code>#hashtags</code>, and links in your tweet unscrambled.</li>
 <li>If there's room left over, we'll add a few other appropriate hashtags and labels.</li>
 <li>Click the <em>Preview</em> button to see what the post will look like on Twitter.</li>
 </ul>
