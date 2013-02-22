@@ -286,6 +286,7 @@ sub _fill {
 
     my $hashtag_length = length($self->thread->hashtag) + 1;
     my $spoilertag_length = length($SPOILERTAG) + 1;
+    my $subject_length = length( $self->thread->subject ) + 2; # +2 for space and a colon
 
 #    if ( $self->_is_first_post ) {
 #        $bodytext = $self->thread->subject . ": $bodytext";
@@ -304,6 +305,11 @@ sub _fill {
     # Next, the app's 'branding' tag, har har.
     if ( length_plus_url($bodytext) + $spoilertag_length <= $POST_MAXLENGTH ) {
         $bodytext .= " $SPOILERTAG";
+    }
+
+    # Next, prepending the plain-english subject label.
+    if ( length_plus_url($bodytext) + $subject_length <= $POST_MAXLENGTH ) {
+        $bodytext = $self->thread->subject . ": $bodytext";
     }
 
     # All posts must end with space + linkback.
