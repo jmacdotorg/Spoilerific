@@ -81,7 +81,14 @@ sub logout : Local {
 sub callback : Local {
     my ($self, $c) = @_;
 
-    if (my $user = $c->authenticate(undef,'twitter')) {
+    if ( $c->req->parameters->{ denied } ) {
+        # Looks like the user visited Twitter's login page, but declined to log in.
+        # Well, OK... for now we'll just put them back where they started.
+        $c->res->redirect(
+            $c->uri_for( $c->user_session->{ original_request_path } || '/' )
+        );
+    }
+    elsif ( eval { my $user = $c->authenticate(undef,'twitter') } ) {
         # Twitter login successful!
         $c->res->redirect(
             $c->uri_for( $c->user_session->{ original_request_path } || '/' )
@@ -89,13 +96,12 @@ sub callback : Local {
         delete $c->user_session->{ original_request_uri };
     }
     else {
-        die "Eh?";
-                # user doesn't have an account - either detect Twitter
-                # credentials and create one, or return an error.
-                #
-                # Note that "request_token" and "request_token_secret"
-                # are stored in $c->user_session as hashref variables under
-                # the same names
+        # XXX Do something interesting.
+        #     We should check $@...
+        $c->flash->{ login_error } = 1;
+        $c->res->redirect(
+            $c->uri_for( $c->user_session->{ original_request_path } || '/' )
+        );
     }
  }
 

@@ -4,6 +4,9 @@ UNLESS original_request_path;
 END;
 %]
 <div id="login_panel">
+[% IF c.flash.login_error %]
+<div class="error_message"><p>Login error! Please try again.</p></div>
+[% END %]
 [% IF c.user %]
 <p>Hi, [% c.user.twitter_user %]!</p>
 [% ELSE %]
