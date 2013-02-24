@@ -159,6 +159,24 @@ sub spoil :Chained('get_thread') :PathPart('spoil') :Args(0) {
                      );
 }
 
+sub random :Local :Args(0) {
+    my ( $self, $c ) = @_;
+
+    my $thread_rs = $c->model('SpoilerDB::Thread')->search;
+    my $random_thread  = $thread_rs->search(
+        { 'posts.id' => { 'is not', undef } },
+        {
+            distinct => 1,
+            join => 'posts',
+        },
+    )->rand->single;
+
+    $c->res->redirect( $c->uri_for_action( '/thread/detail',
+                                           [ $random_thread->id ],
+                                         )
+                     );
+}
+
 sub _thread_form {
     my ( $self, $c ) = @_;
 

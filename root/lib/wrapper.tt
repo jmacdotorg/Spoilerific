@@ -18,6 +18,9 @@
 </p>
 <p><a href="[% c.uri_for_action( '/auth/logout', { original_request_path => '/' _ c.req.path } ) %]">Log out</a></p>
 [% END %]
+<div id="features">
+<p><a href="[% c.uri_for_action( '/thread/random' ) %]">Random spoiler</a></p>
+</div> <!-- #features -->
 <div id="links">
 <p><a href="[% c.uri_for_action( '/about' ) %]">About</a></p>
 <p><a href="[% c.uri_for_action( '/privacy' ) %]">Privacy</a></p>

@@ -23,6 +23,8 @@ requires 'Catalyst::Authentication::Credential::Twitter' => '0.03001';
 
 requires 'FindBin::libs';
 requires 'Catalyst::Plugin::Session::PerUser' => '0.05';
+requires 'DBIx::Class::Helpers' => '2.016005';
+requires 'DBIx::Class' => '0.08208';
 
 catalyst;
 
