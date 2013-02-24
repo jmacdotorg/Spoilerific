@@ -29,6 +29,11 @@ The root page (/)
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
+    my $twitter_search_string = $c->uri_for( '/thread' );
+    $twitter_search_string =~ s{^https?://}{};
+
+    $c->stash->{ twitter_search_string } = $twitter_search_string;
+
     $c->stash->{ template } = 'root.tt';
 }
 
