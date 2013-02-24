@@ -264,9 +264,16 @@ around body_plaintext => sub {
             my $pre_space = $1;
             my $word = $2;
             my $post_space = $3;
-            unless ( ($word =~ /^#/) or ($word =~ /^@/) or ($word =~ $URL_PATTERN) ) {
+
+            # Don't encode hashtags, usernames (including usernames with a dot prefix),
+            # or URLs.
+            unless ( ($word =~ /^#/)
+                     or ($word =~ /^@/)
+                     or ($word =~ /^\.@/)
+                     or ($word =~ $URL_PATTERN) ) {
                 $word =~ tr/n-za-mN-ZA-M/a-zA-Z/;
             }
+
             $body_ciphertext .= "$pre_space$word$post_space";
         }
 
