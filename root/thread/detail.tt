@@ -18,9 +18,9 @@
     <div class="post" id="[% post.id %]">
     <div class="controls">
     <a href="[% c.uri_for_action( '/thread/detail', [thread.id] ) _ '#' _ post.id %]">Permalink</a>
-    <a href="[% post.twitter_url %]">Twitter link</a>
+    • <a href="[% post.twitter_url %]">Twitter link</a>
     [% IF c.user && current_user_has_cleared_this_thread %]
-    <a href="javascript:reply_to([% post.tweet_id %], '[% post.poster.twitter_user %]')">Reply</a>
+    • <a href="javascript:reply_to([% post.tweet_id %], '[% post.poster.twitter_user %]')">Reply</a>
     [% END %]
     </div>
             <div class="post_meta"><p><span class="poster"><a href="http://twitter.com/[% post.poster.twitter_user %]">@[% post.poster.twitter_user %]</a></span> <span class="time"> [% post.timestamp.hour_12 %]:[% post.timestamp.minute FILTER format('%02d') %] [% post.timestamp.am_or_pm %] UTC, [% post.timestamp.month_abbr %] [% post.timestamp.day %], [% post.timestamp.year %]
