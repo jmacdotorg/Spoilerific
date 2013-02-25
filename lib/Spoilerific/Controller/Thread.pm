@@ -28,8 +28,16 @@ sub get_thread :Chained('/') :PathPart('thread') :CaptureArgs(1) {
     my ( $self, $c, $thread_id ) = @_;
 
     my $thread = $c->model('SpoilerDB')->resultset('Thread')->find( $thread_id );
-    $c->stash->{ thread } = $thread;
 
+    if ( $thread ) {
+        $c->stash->{ thread } = $thread;
+    }
+    else {
+        # Bogus thread ID. Back to the starting line with you.
+        $c->res->redirect( $c->uri_for( '/' ) );
+        $c->detach;
+        return;
+    }
 }
 
 sub create :Local :Args(0) {
