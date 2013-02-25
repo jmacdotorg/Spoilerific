@@ -67,14 +67,12 @@ sub default :Path {
     $c->response->status(404);
 }
 
-=head2 end
+sub render : ActionClass('RenderView') { }
 
-Attempt to render a view, if needed.
-
-=cut
-
-sub end : ActionClass('RenderView') {
+sub end : Private {
     my ( $self, $c ) = @_;
+
+    $c->forward( 'render' );
 
     # Work around apparent funny business WRT
     # Catalyst::Authentication::Credential::Twitter.
