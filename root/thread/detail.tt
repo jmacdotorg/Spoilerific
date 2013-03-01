@@ -29,7 +29,7 @@
     <div class="text">
     <p>
     [% IF current_user_has_cleared_this_thread %]
-        [% post.body_plaintext %]
+        [% post.body_plaintext FILTER remove('[{}]') %]
     [% ELSE %]
         [% post.body_ciphertext %]
     [% END %]
