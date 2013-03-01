@@ -6,6 +6,7 @@
 <li>Text in {curly braces} will also stay unscrambled (and we'll remove the braces).</li>
 <li>If there's room left over, we'll add a few other appropriate hashtags and labels.</li>
 <li>Click the <em>Preview</em> button to see what the post will look like on Twitter.</li>
+<li>Click <em>Post this to Twitter</em> when you're happy with the preview.</li>
 </ul>
 <p>
 Characters left: <span id="characters-left">0</span>
@@ -17,6 +18,7 @@ Preview your tweet before posting it!
 </div>
 <input type="submit" id="post_button" value="Post this to Twitter" />
 <input type="hidden" id="in_reply_to" name="in_reply_to" value="" />
+<p id="post_warning">You must click <em>Post this to Twitter</em> when you're ready to share this post. Otherwise, the link back to this page won't work.</p>
 </form>
 
 <script>
