@@ -5,9 +5,7 @@
 <li>We leave any <code>@usernames</code>, <code>#hashtags</code>, and links in your tweet unscrambled.</li>
 <li>Text in {curly braces} will also stay unscrambled (and we'll remove the braces).</li>
 <li>If there's room left over, we'll add a few other appropriate hashtags and labels.</li>
-<li>Click the <em>Preview</em> button to see what the post will look like on Twitter.</li>
-<li>Click <em>Post this to Twitter</em> when you're happy with the preview.</li>
-</ul>
+<li>Click the <em>Preview</em> button to see what the post will look like on Twitter. When you're happy with it, click <em>Post this to Twitter</em>.</li>
 <p>
 Characters left: <span id="characters-left">0</span>
 </p>
