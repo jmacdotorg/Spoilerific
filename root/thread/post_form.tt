@@ -3,6 +3,7 @@
 <ul>
 <li>Your post will have a shortened link back to this page automatically added.</li>
 <li>We leave any <code>@usernames</code>, <code>#hashtags</code>, and links in your tweet unscrambled.</li>
+<li>Text in {curly braces} will also stay unscrambled (and we'll remove the braces).</li>
 <li>If there's room left over, we'll add a few other appropriate hashtags and labels.</li>
 <li>Click the <em>Preview</em> button to see what the post will look like on Twitter.</li>
 </ul>
@@ -39,10 +40,13 @@ function update_characters_left_display() {
     var current_text = $("#body_plaintext").val();
     
     // Detect, remove and count all URLs.
+    var url_count = 0;
+    var bracketed_text_count = 0;
     var url_pattern = /(?:(http|ftp|https):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/g;
+    
+    var bracket_pattern = /{.*?}/g;
 
     var matches = current_text.match( url_pattern );
-    
     if ( matches == null ) {
         url_count = 0;
     }
@@ -50,10 +54,19 @@ function update_characters_left_display() {
         url_count = matches.length;
     }
     
+    matches = current_text.match( bracket_pattern );
+    if ( matches == null ) {
+        bracketed_text_count = 0;
+    }
+    else {
+        bracketed_text_count = matches.length;
+    }
+    
     // Add the remainder's length to URL lengths + required hashtag 
     // + required URL
     var length = current_text.length 
                  + ( url_count * url_length)
+                 + ( bracketed_text_count * -2 )
 //                 + space_length
 //                 + hashtag_length
                  + space_length

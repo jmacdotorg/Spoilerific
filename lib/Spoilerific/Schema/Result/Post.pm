@@ -260,21 +260,30 @@ around body_plaintext => sub {
 
         my $body_ciphertext = '';
 
-        while ( $body_plaintext =~ /(\s*)(\S+)(\s*)/g ) {
+        while ( $body_plaintext =~ /(\s*)(?:{(.*?)}|(\S+))(\s*)/g ) {
             my $pre_space = $1;
-            my $word = $2;
-            my $post_space = $3;
+            my $bracketed_text = $2;
+            my $word = $3;
+            my $post_space = $4;
 
-            # Don't encode hashtags, usernames (including usernames with a dot prefix),
-            # or URLs.
-            unless ( ($word =~ /^#/)
-                     or ($word =~ /^@/)
-                     or ($word =~ /^\.@/)
-                     or ($word =~ $URL_PATTERN) ) {
-                $word =~ tr/n-za-mN-ZA-M/a-zA-Z/;
+            my $processed_text_chunk = '';
+            if ( $bracketed_text ) {
+                $processed_text_chunk = $bracketed_text;
+            }
+            else {
+                # Don't encode hashtags, usernames
+                # (including usernames with a dot prefix),
+                # or URLs.
+                unless ( ($word =~ /^#/)
+                         or ($word =~ /^@/)
+                         or ($word =~ /^\.@/)
+                         or ($word =~ $URL_PATTERN) ) {
+                    $word =~ tr/n-za-mN-ZA-M/a-zA-Z/;
+                }
+                $processed_text_chunk = $word;
             }
 
-            $body_ciphertext .= "$pre_space$word$post_space";
+            $body_ciphertext .= "$pre_space$processed_text_chunk$post_space";
         }
 
         $self->body_ciphertext( $body_ciphertext );
