@@ -304,10 +304,6 @@ sub _fill {
     my $spoilertag_length = length($SPOILERTAG) + 1;
     my $subject_length = length( $self->thread->subject ) + 2; # +2 for space and a colon
 
-#    if ( $self->_is_first_post ) {
-#        $bodytext = $self->thread->subject . ": $bodytext";
-#    }
-
     # Add optional bits, one at a time, in order of precedence.
     # First, the subject hashtag.
     if ( length_plus_url($bodytext) + $hashtag_length <= $POST_MAXLENGTH ) {
@@ -324,7 +320,10 @@ sub _fill {
     }
 
     # Next, prepending the plain-english subject label.
-    if ( length_plus_url($bodytext) + $subject_length <= $POST_MAXLENGTH ) {
+    # Skip this step if this post appears to be an @-reply, formal or otherwise.
+    if ( ( length_plus_url($bodytext) + $subject_length <= $POST_MAXLENGTH )
+         and not ( $bodytext =~ /^\s*@/ )
+    ) {
         $bodytext = $self->thread->subject . ": $bodytext";
     }
 
