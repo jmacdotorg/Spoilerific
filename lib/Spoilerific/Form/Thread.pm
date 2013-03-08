@@ -5,6 +5,7 @@ extends 'HTML::FormHandler::Model::DBIC';
 
 has_field 'subject' => ( type => 'Text',
                          required => 1,
+                         size => 80,
                        );
 
 has_field 'hashtag' => ( type => 'Text',
