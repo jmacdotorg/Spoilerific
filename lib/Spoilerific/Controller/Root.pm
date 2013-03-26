@@ -67,17 +67,7 @@ sub default :Path {
     $c->response->status(404);
 }
 
-sub render : ActionClass('RenderView') { }
-
-sub end : Private {
-    my ( $self, $c ) = @_;
-
-    $c->forward( 'render' );
-
-    # Work around apparent funny business WRT
-    # Catalyst::Authentication::Credential::Twitter.
-    $c->get_auth_realm('twitter')->credential->twitter_user( undef );
-}
+sub end : ActionClass('RenderView') { }
 
 =head1 AUTHOR
 
