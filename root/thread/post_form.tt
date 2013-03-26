@@ -41,6 +41,7 @@ function update_characters_left_display() {
     
     // Detect, remove and count all URLs.
     var url_count = 0;
+    var total_unshortened_url_length = 0;
     var bracketed_text_count = 0;
     var url_pattern = /(?:(http|ftp|https):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/g;
     
@@ -52,6 +53,13 @@ function update_characters_left_display() {
     }
     else {
         url_count = matches.length;
+        for ( var i = 0; i <= matches.length; i++ ) {
+            var url = matches[i];
+            if ( url ) {
+                total_unshortened_url_length = total_unshortened_url_length
+                                               + url.length;
+            }
+        }
     }
     
     matches = current_text.match( bracket_pattern );
@@ -67,10 +75,9 @@ function update_characters_left_display() {
     var length = current_text.length 
                  + ( url_count * url_length)
                  + ( bracketed_text_count * -2 )
-//                 + space_length
-//                 + hashtag_length
                  + space_length
                  + url_length
+                 - total_unshortened_url_length
                  ;
     
     var characters_left = max_post_length - length;
