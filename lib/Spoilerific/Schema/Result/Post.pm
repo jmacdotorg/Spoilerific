@@ -380,8 +380,16 @@ sub post_to_twitter {
     }
 }
 
+# length_plus_url: Returns the length of the given bodytext, with the mandatory linkback
+#                  URL (plus a space) added, and recomputing the length of all present
+#                  URLs to Twitter's shortened-URL max-length.
 sub length_plus_url {
     my ( $bodytext ) = @_;
+
+    # For the purpose of length-reckoning, replace all URLs with dummy short-URLs.
+    my $dummy_shortened_url = q{X} x __PACKAGE__->url_length;
+    $bodytext =~ s/$URL_PATTERN/$dummy_shortened_url/eg;
+
     return length($bodytext) + 1 + __PACKAGE__->url_length;
 }
 

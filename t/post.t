@@ -59,7 +59,10 @@ is( $post1->full_plaintext,
     'Did not add any tags to very long body text.',
 );
 
-$post1->body_plaintext( q{@bob OMG #wow did you see that?} );
-diag( $post1->body_ciphertext );
+$post1->body_plaintext( q{Testing many URLs. jmac.org jmac.org jmac.org jmac.org} );
+is( $post1->full_ciphertext,
+    "Grfgvat znal HEYf. jmac.org jmac.org jmac.org jmac.org #foo $POST_URL",
+    'Did not add any decoration to body text containing many short URLs.'
+);
 
 done_testing();
