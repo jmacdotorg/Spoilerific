@@ -25,6 +25,7 @@ requires 'FindBin::libs';
 requires 'Catalyst::Plugin::Session::PerUser' => '0.05';
 requires 'DBIx::Class::Helpers' => '2.016005';
 requires 'DBIx::Class' => '0.08208';
+requires 'Readonly' => '1.03';
 
 catalyst;
 
