@@ -140,17 +140,14 @@ __PACKAGE__->has_many(
 use Net::Twitter;
 use MooseX::ClassAttribute;
 
-# XXX The defaults below are a hack. They need to really come in from config, somehow.
 class_has 'consumer_key' => (
     is => 'rw',
     isa => 'Str',
-    default => 'vhPfRMAmWicZaxdEfToZLQ',
 );
 
 class_has 'consumer_secret' => (
     is => 'rw',
     isa => 'Str',
-    default => 'ev2KOPola3k8bqOfoR0UOKG8arotSPzWquSofxO9A',
 );
 
 # twitter_ua: a Net::Twitter object representing a live Twitter connection for this user.

@@ -30,11 +30,7 @@ use Catalyst qw/
 
 extends 'Catalyst';
 
-our $VERSION = '0.01';
-
-use Readonly;
-Readonly my $TWITTER_KEY => 'vhPfRMAmWicZaxdEfToZLQ';
-Readonly my $TWITTER_SECRET => 'ev2KOPola3k8bqOfoR0UOKG8arotSPzWquSofxO9A';
+our $VERSION = '0.02';
 
 # Configure the application.
 #
@@ -54,6 +50,11 @@ __PACKAGE__->config(
     'View::HTML' => {
         WRAPPER => 'lib/wrapper.tt',
     },
+    'Plugin::ConfigLoader' => {
+        driver => {
+            'General' => { -InterPolateVars => 1 }
+        },
+    },
     "Plugin::Authentication" => {
         default_realm => "twitter",
         realms => {
@@ -62,9 +63,6 @@ __PACKAGE__->config(
                     class => "Twitter",
                 },
 
-                consumer_key    => $TWITTER_KEY,
-                consumer_secret => $TWITTER_SECRET,
-                callback_url => 'http://spoilerific.dlinkddns.com:3000/auth/callback',
                 auto_create_user => 1,
                 auto_update_user => 1,
                 store => {
@@ -74,10 +72,6 @@ __PACKAGE__->config(
             },
 
         },
-    },
-    "Model::SpoilerDB" => {
-        consumer_key    => $TWITTER_KEY,
-        consumer_secret => $TWITTER_SECRET,
     },
 );
 
