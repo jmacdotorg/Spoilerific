@@ -10,7 +10,10 @@ __PACKAGE__->config(
         dsn => 'dbi:mysql:spoilerific',
         user => 'root',
         password => '',
-    }
+    },
+
+    traits => [ qw/ SchemaProxy / ],
+
 );
 
 =head1 NAME

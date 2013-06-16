@@ -246,9 +246,18 @@ sub _build_twitter_url {
 }
 
 sub _fetch_url_length {
-    my $self = shift;
-    my $nt = Net::Twitter->new( legacy => 0 );
+    my $class = shift;
+
+    my $nt = Net::Twitter->new(
+        traits   => [qw/API::RESTv1_1 OAuth/],
+        consumer_key        => Spoilerific::Schema->consumer_key,
+        consumer_secret     => Spoilerific::Schema->consumer_secret,
+        access_token        => Spoilerific::Schema->access_token,
+        access_token_secret => Spoilerific::Schema->access_token_secret,
+    );
+
     my $twitter_config = $nt->get_configuration;
+
     return $twitter_config->{ short_url_length };
 }
 

@@ -168,11 +168,10 @@ sub _build_twitter_ua {
     my $self = shift;
 
     my $nt = Net::Twitter->new(
-        legacy => 0,
-        source => 'api',
-        consumer_key => __PACKAGE__->consumer_key,
-        consumer_secret => __PACKAGE__->consumer_secret,
-        access_token => $self->twitter_access_token,
+        traits              => [qw/API::RESTv1_1 OAuth/],
+        consumer_key        => $self->result_source->schema->consumer_key,
+        consumer_secret     => $self->result_source->schema->consumer_secret,
+        access_token        => $self->twitter_access_token,
         access_token_secret => $self->twitter_access_token_secret,
     );
 
