@@ -18,6 +18,8 @@ If you mess around with the code to the degree that you actually end up with a p
 
 1. Install all the CPAN modules listed as requirements in Makefile.PL. (Consider using `cpanm`.)
 
+1. Update `t/conf/spoilerific.conf` with your application's Twitter credentials.
+
 1. Run `prove -l lib t` and make sure all the tests pass.
 
 1. Run `script/spoilerific_server.pl -r -d`. If it succeeds (and prints a lot of neatly formatted debug information to the terminal), you should be able to access the app at `http://localhost:3000`.
