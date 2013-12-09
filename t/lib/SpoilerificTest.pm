@@ -25,6 +25,20 @@ my $db_dir    = "$FindBin::Bin/db";
 my $db_file   = "$db_dir/Spoilerific.db";
 my $dsn       = "dbi:SQLite:$db_file";
 
+use Config::Any;
+my $config = Config::Any->load_files({
+    files => [
+        "$FindBin::Bin/conf/spoilerific.conf",
+    ],
+    use_ext => 1,
+    flatten_to_hash => 1,
+});
+
+foreach ( qw/consumer_key consumer_secret access_token access_token_secret/ ) {
+    my $config_key = 'TWITTER_' . uc( $_ );
+    Spoilerific::Schema->$_( $config->{ "$FindBin::Bin/conf/spoilerific.conf" }->{ $config_key } );
+}
+
 sub init_schema {
     my $self = shift;
     my %args = @_;
