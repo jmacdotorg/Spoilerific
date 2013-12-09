@@ -138,17 +138,6 @@ __PACKAGE__->has_many(
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:VkugykRO5VA7ggzCWjB5Gw
 
 use Net::Twitter;
-use MooseX::ClassAttribute;
-
-class_has 'consumer_key' => (
-    is => 'rw',
-    isa => 'Str',
-);
-
-class_has 'consumer_secret' => (
-    is => 'rw',
-    isa => 'Str',
-);
 
 # twitter_ua: a Net::Twitter object representing a live Twitter connection for this user.
 has 'twitter_ua' => (
