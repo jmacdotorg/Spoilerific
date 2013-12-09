@@ -25,6 +25,10 @@ my $db_dir    = "$FindBin::Bin/db";
 my $db_file   = "$db_dir/Spoilerific.db";
 my $dsn       = "dbi:SQLite:$db_file";
 
+# XXX It's perhaps not ideal to read the config file, just to grab twitter keys, which
+#     in turn are only for connecting to the Twitter API and testing the current length
+#     of shortened URLs. But the alternative if just faking that API call, and I dunno
+#     if that's much better...
 use Config::Any;
 my $config = Config::Any->load_files({
     files => [
