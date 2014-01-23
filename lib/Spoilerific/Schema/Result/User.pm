@@ -162,6 +162,7 @@ sub _build_twitter_ua {
         consumer_secret     => $self->result_source->schema->consumer_secret,
         access_token        => $self->twitter_access_token,
         access_token_secret => $self->twitter_access_token_secret,
+        ssl                 => 1,
     );
 
     return $nt;

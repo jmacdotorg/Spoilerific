@@ -254,6 +254,7 @@ sub _fetch_url_length {
         consumer_secret     => Spoilerific::Schema->consumer_secret,
         access_token        => Spoilerific::Schema->access_token,
         access_token_secret => Spoilerific::Schema->access_token_secret,
+        ssl                 => 1,
     );
 
     my $twitter_config = $nt->get_configuration;
